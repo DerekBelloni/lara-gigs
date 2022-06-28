@@ -18,6 +18,7 @@ class ListingController extends Controller
     // Show single listing
     public function show(Listing $listing)
     {
+
         return view('listings.show', [
             'listing' => $listing
         ]);
@@ -33,7 +34,16 @@ class ListingController extends Controller
     {
         $formFields = $request->validate([
             'title' => 'required',
-            'company' => ['required', Rule::unique('listing', 'company')]
+            'company' => ['required', Rule::unique('listings', 'company')],
+            'location' => 'required',
+            'website' => 'required',
+            'email' => ['required', 'email'],
+            'tags' => 'required',
+            'description' => 'required'
         ]);
+
+        Listing::create($formFields);
+
+        return redirect('/');
     }
 }
