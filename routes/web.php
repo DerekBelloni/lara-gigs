@@ -41,6 +41,15 @@ Route::get('/listings/{listing}', [ListingController::class, 'show']);
 // Show Register/Create From
 Route::get('/register', [UserController::class, 'create']);
 
+// Create New User
+Route::post('/users', [UserController::class, 'store']);
+
+// Log User Out
+Route::post('/logout', [UserController::class, 'logout']);
+
+// Show Login Form
+Route::get('/login', [UserController::class, 'login']);
+
 // Common Resource Routes:
 // index - Show all listings
 // show - Show single listing
